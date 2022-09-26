@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:jre
+FROM docker.io/library/eclipse-temurin:18
 
 LABEL maintainer="Rodolphe CHAIGNEAU <rodolphe.chaigneau@gmail.com>"
 
