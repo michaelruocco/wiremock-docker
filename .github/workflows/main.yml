@@ -12,10 +12,10 @@ jobs:
     strategy:
       matrix:
        versions:
-         - IMAGE: wiremock/wiremock:main
+         - IMAGE: michaelruocco/wiremock:main
            CONTEXT: .
            PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
-         - IMAGE: wiremock/wiremock:main-alpine
+         - IMAGE: michaelruocco/wiremock:main-alpine
            CONTEXT: alpine
            PLATFORMS: linux/amd64
     steps:

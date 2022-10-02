@@ -1,6 +1,6 @@
 FROM docker.io/library/eclipse-temurin:18
 
-LABEL maintainer="Rodolphe CHAIGNEAU <rodolphe.chaigneau@gmail.com>"
+LABEL maintainer="Michael Ruocco"
 
 ENV WIREMOCK_VERSION 2.34.0
 ENV GOSU_VERSION 1.14

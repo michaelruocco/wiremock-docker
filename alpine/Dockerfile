@@ -1,6 +1,6 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM docker.io/library/eclipse-temurin:18-jre-alpine
 
-LABEL maintainer="Rodolphe CHAIGNEAU <rodolphe.chaigneau@gmail.com>"
+LABEL maintainer="Michael Ruocco"
 
 ENV WIREMOCK_VERSION 2.34.0
 
