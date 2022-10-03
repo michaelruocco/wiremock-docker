@@ -40,7 +40,7 @@ jobs:
         # Replace version in Dockerfiles if newer version exists
         CURRENT_VERSION=$(git describe --abbrev=0 --tags)
         CURRENT_VERSION=${CURRENT_VERSION%-*}
-        LATEST_VERSION=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/michaelruocco/wiremock.git '*.*.*' | tail -1 | cut -d '/' -f3)
+        LATEST_VERSION=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/michaelruocco/wiremock-docker.git '*.*.*' | tail -1 | cut -d '/' -f3)
         if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]
         then
           sed -i s/${CURRENT_VERSION}/${LATEST_VERSION}/g Dockerfile alpine/Dockerfile
@@ -96,7 +96,7 @@ jobs:
       run: |
         CURRENT_VERSION=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/michaelruocco/wiremock-docker.git '*.*.*' | tail -1 | cut -d '/' -f3)
         CURRENT_VERSION=${CURRENT_VERSION%-*}
-        LATEST_VERSION=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/michaelruocco/wiremock.git '*.*.*' | tail -1 | cut -d '/' -f3)
+        LATEST_VERSION=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/michaelruocco/wiremock-docker.git '*.*.*' | tail -1 | cut -d '/' -f3)
         if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]
         then
           echo "::set-output name=NEW_VERSION::$LATEST_VERSION"
