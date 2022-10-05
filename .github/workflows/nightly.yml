@@ -35,6 +35,17 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Update version if newer
+      run: |
+        # Replace version in Dockerfiles if newer version exists
+        CURRENT_VERSION=$(git describe --abbrev=0 --tags)
+        CURRENT_VERSION=${CURRENT_VERSION%-*}
+        LATEST_VERSION=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/wiremock/wiremock.git '*.*.*' | tail -1 | cut -d '/' -f3)
+        if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]
+        then
+          sed -i s/${CURRENT_VERSION}/${LATEST_VERSION}/g Dockerfile alpine/Dockerfile
+        fi
+
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -137,8 +148,8 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
-        username: wiremock
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push Wiremock Docker image to Docker HUB
       run: docker buildx build --tag ${{ join(matrix.versions.IMAGES, ' --tag ') }} --platform ${{ matrix.versions.PLATFORMS }} --push ${{ matrix.versions.CONTEXT }}
