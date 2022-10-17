@@ -1,4 +1,4 @@
-FROM docker.io/library/eclipse-temurin:18
+FROM docker.io/library/eclipse-temurin:19
 
 LABEL maintainer="Michael Ruocco"
 
