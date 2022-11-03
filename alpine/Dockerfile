@@ -2,7 +2,7 @@ FROM docker.io/library/eclipse-temurin:18-jre-alpine
 
 LABEL maintainer="Michael Ruocco"
 
-ENV WIREMOCK_VERSION 2.34.0
+ENV WIREMOCK_VERSION 2.35.0
 
 RUN apk add --update openssl
 

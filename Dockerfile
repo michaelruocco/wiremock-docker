@@ -2,7 +2,7 @@ FROM docker.io/library/eclipse-temurin:19
 
 LABEL maintainer="Michael Ruocco"
 
-ENV WIREMOCK_VERSION 2.34.0
+ENV WIREMOCK_VERSION 2.35.0
 ENV GOSU_VERSION 1.14
 
 # grab gosu for easy step-down from root
