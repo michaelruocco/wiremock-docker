@@ -1,8 +1,18 @@
+# BUILD
+
+FROM gradle:7-jdk11 AS builder
+
+WORKDIR /workdir
+
+RUN git clone https://github.com/wiremock/wiremock .
+
+RUN ./gradlew shadowJar
+
+# RUN
+
 FROM docker.io/library/eclipse-temurin:18-jre-alpine
 
 LABEL maintainer="Michael Ruocco <michael.ruocco@hotmail.com>"
-
-ENV WIREMOCK_VERSION 2.35.0
 
 WORKDIR /home/wiremock
 
@@ -12,10 +22,7 @@ RUN apk add --update openssl
 # and bash
 RUN apk add --no-cache 'su-exec>=0.2' bash
 
-# grab wiremock standalone jar
-RUN mkdir -p /var/wiremock/lib/ \
-  && wget https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/$WIREMOCK_VERSION/wiremock-jre8-standalone-$WIREMOCK_VERSION.jar \
-    -O /var/wiremock/lib/wiremock-jre8-standalone.jar
+COPY --from=builder /workdir/build/libs/*.jar /var/wiremock/lib/wiremock-jre8-standalone.jar
 
 COPY docker-entrypoint.sh /
 

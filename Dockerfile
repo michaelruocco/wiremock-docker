@@ -1,9 +1,11 @@
 FROM docker.io/library/eclipse-temurin:19
 
-LABEL maintainer="Michael Ruocco"
+LABEL maintainer="Michael Ruocco <michael.ruocco@hotmail.com>"
 
 ENV WIREMOCK_VERSION 2.35.0
 ENV GOSU_VERSION 1.14
+
+WORKDIR /home/wiremock
 
 # grab gosu for easy step-down from root
 RUN set -eux; \
@@ -45,11 +47,8 @@ RUN mkdir -p /var/wiremock/lib/ \
   && curl https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/$WIREMOCK_VERSION/wiremock-jre8-standalone-$WIREMOCK_VERSION.jar \
     -o /var/wiremock/lib/wiremock-jre8-standalone.jar
 
-WORKDIR /home/wiremock
-
 COPY docker-entrypoint.sh /
 
-VOLUME /home/wiremock
 EXPOSE 8080 8443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
