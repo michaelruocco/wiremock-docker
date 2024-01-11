@@ -1,4 +1,4 @@
-FROM docker.io/library/eclipse-temurin:19-jre-alpine
+FROM docker.io/library/eclipse-temurin:20-jre-alpine
 
 LABEL maintainer="Michael Ruocco <michael.ruocco@hotmail.com>"
 
