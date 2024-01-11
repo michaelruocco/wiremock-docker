@@ -21,7 +21,6 @@
 ## Supported architectures
 
 - x64
-- armv7
 - armv8
 
 ## The image includes
